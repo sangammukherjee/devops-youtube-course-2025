@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-import TaskList from "./components/TaskList";
-import AddTaskDialog from "./components/AddTaskDialog";
-import LoadingSpinner from "./components/LoadingSpinner";
-import { taskService } from "./services/taskService";
+import { useState, useEffect } from 'react';
+import TaskList from './components/TaskList';
+import AddTaskDialog from './components/AddTaskDialog';
+import LoadingSpinner from './components/LoadingSpinner';
+import { taskService } from './services/taskService';
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -24,8 +24,8 @@ function App() {
       const response = await taskService.getAllTasks();
       setTasks(response.data);
     } catch (err) {
-      setError("Failed to fetch tasks. Please try again.");
-      console.error("Error fetching tasks:", err);
+      setError('Failed to fetch tasks. Please try again.');
+      console.error('Error fetching tasks:', err);
     } finally {
       setLoading(false);
     }
@@ -38,10 +38,10 @@ function App() {
       setIsDialogOpen(false);
       return { success: true };
     } catch (err) {
-      console.error("Error creating task:", err);
+      console.error('Error creating task:', err);
       return {
         success: false,
-        error: err.message || "Failed to create task",
+        error: err.message || 'Failed to create task',
       };
     }
   };
@@ -51,14 +51,16 @@ function App() {
       await taskService.deleteTask(taskId);
       setTasks((prevTasks) => prevTasks.filter((task) => task._id !== taskId));
     } catch (err) {
-      setError("Failed to delete task. Please try again.");
-      console.error("Error deleting task:", err);
+      setError('Failed to delete task. Please try again.');
+      console.error('Error deleting task:', err);
     }
   };
 
   const handleRetry = () => {
     fetchTasks();
   };
+
+  // let sangam = 'unused variable here';
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -68,9 +70,7 @@ function App() {
           <div className="flex justify-between items-center">
             <div>
               <h1 className="text-3xl font-bold text-gray-900">Task Manager</h1>
-              <p className="text-gray-600 mt-1">
-                Simple task management for DevOps demo
-              </p>
+              <p className="text-gray-600 mt-1">Simple task management for DevOps demo</p>
             </div>
             <button
               onClick={() => setIsDialogOpen(true)}
@@ -121,10 +121,7 @@ function App() {
 
       {/* Add Task Dialog */}
       {isDialogOpen && (
-        <AddTaskDialog
-          onClose={() => setIsDialogOpen(false)}
-          onSubmit={handleAddTask}
-        />
+        <AddTaskDialog onClose={() => setIsDialogOpen(false)} onSubmit={handleAddTask} />
       )}
     </div>
   );

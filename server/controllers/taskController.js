@@ -1,4 +1,4 @@
-const Task = require("../models/Task");
+const Task = require('../models/Task');
 
 // Get all tasks
 const getAllTasks = async (req, res) => {
@@ -10,10 +10,10 @@ const getAllTasks = async (req, res) => {
       data: tasks,
     });
   } catch (error) {
-    console.error("Error fetching tasks:", error);
+    console.error('Error fetching tasks:', error);
     res.status(500).json({
       success: false,
-      message: "Failed to fetch tasks",
+      message: 'Failed to fetch tasks',
     });
   }
 };
@@ -27,7 +27,7 @@ const createTask = async (req, res) => {
     if (!title || !description) {
       return res.status(400).json({
         success: false,
-        message: "Title and description are required",
+        message: 'Title and description are required',
       });
     }
 
@@ -38,23 +38,23 @@ const createTask = async (req, res) => {
 
     res.status(201).json({
       success: true,
-      message: "Task created successfully",
+      message: 'Task created successfully',
       data: task,
     });
   } catch (error) {
-    console.error("Error creating task:", error);
+    console.error('Error creating task:', error);
 
-    if (error.name === "ValidationError") {
+    if (error.name === 'ValidationError') {
       const messages = Object.values(error.errors).map((err) => err.message);
       return res.status(400).json({
         success: false,
-        message: messages.join(", "),
+        message: messages.join(', '),
       });
     }
 
     res.status(500).json({
       success: false,
-      message: "Failed to create task",
+      message: 'Failed to create task',
     });
   }
 };
@@ -69,19 +69,19 @@ const deleteTask = async (req, res) => {
     if (!task) {
       return res.status(404).json({
         success: false,
-        message: "Task not found",
+        message: 'Task not found',
       });
     }
 
     res.status(200).json({
       success: true,
-      message: "Task deleted successfully",
+      message: 'Task deleted successfully',
     });
   } catch (error) {
-    console.error("Error deleting task:", error);
+    console.error('Error deleting task:', error);
     res.status(500).json({
       success: false,
-      message: "Failed to delete task",
+      message: 'Failed to delete task',
     });
   }
 };
