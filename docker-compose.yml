@@ -9,8 +9,11 @@ services:
     ports:
       - "5000:5000"
 
-  frontend:
-    build: ./client
+frontend:
+    build:
+      context: ./client
+      args:
+        VITE_API_URL: http://3.26.242.54:5000/api
     container_name: frontend
     restart: always
     ports:
