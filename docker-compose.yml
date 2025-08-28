@@ -10,11 +10,7 @@ services:
       - "5000:5000"
 
   frontend:
-    build:
-      context: ./client
-      args:
-        # 👇 use your EC2 IP here
-        VITE_API_URL: http://3.26.242.54:5000/api
+    build: ./client
     container_name: frontend
     restart: always
     ports:
