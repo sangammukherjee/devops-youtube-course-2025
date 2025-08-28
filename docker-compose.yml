@@ -10,12 +10,14 @@ services:
       - "5000:5000"
 
   frontend:
-    build: ./client
+    build:
+      context: ./client
+      args:
+        # 👇 use your EC2 IP here
+        VITE_API_URL: http://3.26.242.54:5000/api
     container_name: frontend
     restart: always
     ports:
       - "5173:5173"
     depends_on:
       - backend
-    environment:
-    - VITE_API_URL=http://backend:5000/api
