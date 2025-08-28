@@ -9,7 +9,7 @@ services:
     ports:
       - "5000:5000"
 
-frontend:
+  frontend:
     build:
       context: ./client
       args:
